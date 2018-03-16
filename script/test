@@ -8,5 +8,5 @@ run-test ()
   diff fixtures/output <( src/$1/bin/mower "$(cat fixtures/input)")
 }
 
-run-test 'ruby'
 run-test 'python'
+run-test 'ruby'
