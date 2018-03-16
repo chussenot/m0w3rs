@@ -17,8 +17,8 @@ end
 class Position
   include Point::InstanceMethods
   def initialize(options={x: 0, y: 0})
-    @x = options[:x]
-    @y = options[:y]
+    @x = Integer(options[:x])
+    @y = Integer(options[:y])
   end
 
   def change(direction)
@@ -58,17 +58,21 @@ def mower(input)
   le = code.length # input length
   cp = -1 # code pointer
   lines = ["1 3 N", "5 1 E"] # line results (tmp)
-  o = "" # the output
+  output = "" # the output
+  position = Position.new
+  keys = [:x,:y,:o]
   until (cp+=1) == le
-    o += case code[cp]
+    output += case code[cp]
     when /[1-9]/
-      # do some stuff
+      # position and direction
+      h = keys.zip(code[cp].chars).to_h
+      position = Position.new(h).change(h[:o])
       next
     else
       lines.shift
     end + "\n"
   end
-  return o
+  return output
 end
 
 input = ARGV[0] || """
