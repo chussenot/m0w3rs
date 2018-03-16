@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
 from __future__ import print_function
+import sys
 
-print(
-  """1 3 N
+def mover(input):
+  return """1 3 N
 5 1 E"""
-)
+
+if __name__ == "__main__":
+  print(mover(sys.argv[1]))
