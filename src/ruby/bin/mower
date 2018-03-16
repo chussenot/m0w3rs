@@ -1,11 +1,59 @@
 #!/usr/bin/env ruby
 require 'pry'
 
+module Point
+  # Allows an object to be positioned on a plane.
+  module InstanceMethods
+    attr_accessor :x, :y
+
+    def to_array
+      [x, y]
+    end
+
+    alias to_a to_array
+  end
+end
+
+class Position
+  include Point::InstanceMethods
+  def initialize(options={x: 0, y: 0})
+    @x = options[:x]
+    @y = options[:y]
+  end
+
+  def change(direction)
+    case direction
+    when 'N'
+      Position.new(x: x, y: y + 1)
+    when 'W'
+      Position.new(x: x - 1, y: y)
+    when 'S'
+      Position.new(x: x, y: y - 1)
+    when 'E'
+      Position.new(x: x + 1, y: y)
+    end
+  end
+
+  # @return [Hash] Converts options object to an options hash. All keys
+  #   will be symbolized.
+  def to_hash
+    { x: x, y: y }
+  end
+
+  alias to_h to_hash
+
+  # Inspects the object
+  def inspect
+    "<#{self.class} #{{ x: @x, y: @y }}>"
+  end
+end
+
 def mower(input)
-  # valid commmands
-  commands = ["N","E","W","S","L","R","F"]
+  # valid directions & commmands
+  directions = ["N","E","W","S"]
+  commands = ["L","R","F"]
   exit if !input.gsub(/\d+/,"").split.join
-                .delete("#{commands.join}").empty?
+            .delete("#{(directions + commands).join}").empty? # invalid format
   code = input.strip.lines.map{|line| line.split.join}
   le = code.length # input length
   cp = -1 # code pointer
