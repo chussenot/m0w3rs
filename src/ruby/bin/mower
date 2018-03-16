@@ -24,13 +24,13 @@ class Position
   def change(direction)
     case direction
     when 'N'
-      Position.new(x: x, y: y + 1)
+      self.class.new(x: x, y: y + 1)
     when 'W'
-      Position.new(x: x - 1, y: y)
+      self.class.new(x: x - 1, y: y)
     when 'S'
-      Position.new(x: x, y: y - 1)
+      self.class.new(x: x, y: y - 1)
     when 'E'
-      Position.new(x: x + 1, y: y)
+      self.class.new(x: x + 1, y: y)
     end
   end
 
@@ -49,22 +49,22 @@ class Position
 end
 
 def mower(input)
-  # valid directions & commmands
-  directions = ["N","E","W","S"]
-  commands = ["L","R","F"]
+  # Valid directions & commmands
+  directions = %w{N E W S}
+  commands = %w{L R F}
   exit if !input.gsub(/\d+/,"").split.join
-            .delete("#{(directions + commands).join}").empty? # invalid format
+            .delete("#{(directions + commands).join}").empty? # Invalid format
   code = input.strip.lines.map{|line| line.split.join}
-  le = code.length # input length
-  cp = -1 # code pointer
-  lines = ["1 3 N", "5 1 E"] # line results (tmp)
-  output = "" # the output
+  le = code.length # Input length
+  cp = -1 # Code pointer
+  lines = ["1 3 N", "5 1 E"] # Line results (tmp)
+  output = "" # The output
   position = Position.new
   keys = [:x,:y,:o]
   until (cp+=1) == le
     output += case code[cp]
     when /[1-9]/
-      # position and direction
+      # Position and direction
       h = keys.zip(code[cp].chars).to_h
       position = Position.new(h).change(h[:o])
       next
