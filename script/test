@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
+run-test ()
+{
+  diff fixtures/output <( src/$1/bin/mower )
+}
+
+run-test 'ruby'
+run-test 'python'

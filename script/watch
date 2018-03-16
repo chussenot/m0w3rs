@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+ls -d src/**/bin/mower | entr ./script/test
