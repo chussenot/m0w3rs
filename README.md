@@ -1,7 +1,6 @@
 M0w3rs
 ======
 
-
 Dependencies
 ------------
 
@@ -14,4 +13,3 @@ Usage
 
 You can run the tests with the `make test` command.
 To see more commands just do `make help`.
-
