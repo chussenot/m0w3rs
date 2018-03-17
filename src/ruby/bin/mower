@@ -69,6 +69,7 @@ class Parser
 end
 
 def parse(input)
+  input = input.strip
   # Valid directions & commmands
   directions = %w{N E W S}
   commands = %w{L R F}
@@ -76,7 +77,7 @@ def parse(input)
   exit if input.lines.size%2==0 # Should contains an odd number of lines
   exit if !input.gsub(/\d+/,"").split.join
             .delete("#{(directions + commands).join}").empty? # Invalid format
-  code = input.strip.lines.map{|line| line.split.join}
+  code = input.lines
   x, y = code.shift
   lawn = Lawn.new(x,y)
   le = code.length # Input length
@@ -89,7 +90,7 @@ def parse(input)
     output += case code[cp]
     when /[1-9]/
       # Position and direction
-      h = keys.zip(code[cp].chars).to_h
+      h = keys.zip(code[cp].split(' ')).to_h
       position = Position.new(h).change(h[:o])
       next
     else
