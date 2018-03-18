@@ -1,4 +1,8 @@
 language: ruby
 
+env:
+  global:
+  - SHELL=/bin/bash
+
 script:
    - make test
