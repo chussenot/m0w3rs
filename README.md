@@ -1,6 +1,8 @@
 M0w3rs
 ======
 
+[![Build Status](https://travis-ci.org/chussenot/m0w3rs.svg?branch=master)](https://travis-ci.org/chussenot/m0w3rs)
+
 Dependencies
 ------------
 

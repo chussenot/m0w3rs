@@ -4,7 +4,7 @@ help:		## Show this help.
 watch:		## Watch the src folder for changes and run tests
 	@script/watch
 
-test:		## Test all the implementations
+test: ruby-install		## Test all the implementations
 	@echo "Run the main test"
 	@script/test
 
