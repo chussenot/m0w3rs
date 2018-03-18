@@ -24,6 +24,9 @@ Implementations
 
 ### Ruby
 
+This is the first implementation of this exercice, take a look at the `VISION.md`
+for more informations about the main plan of this project.
+
 #### Tests
 To run specs manually, run `bundle exec rspec`
 or `make watch` for autorun with entr.
